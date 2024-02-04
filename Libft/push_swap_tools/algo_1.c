@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:39:32 by nabil             #+#    #+#             */
-/*   Updated: 2024/01/21 09:40:37 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/03 12:14:52 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void     swap_a(int  *stack)
     stack[i] = stack[i + 1];
     stack[i + 1] = buff[i];
     free(buff);
-    printf("SWAP A\n");
+    ft_printf("sa\n");
 }    
 
 void     swap_b(int  *stack)
@@ -62,7 +62,7 @@ void     swap_b(int  *stack)
     stack[i] = stack[i + 1];
     stack[i + 1] = buff[i];
     free(buff);
-    ft_printf("SWAP B\n");
+    ft_printf("sb\n");
 }
 
 void     swap_ss(int  *stack_a, int *stack_b)
@@ -79,7 +79,7 @@ void     swap_ss(int  *stack_a, int *stack_b)
     stack_b[i] = stack_b[i + 1];
     stack_b[i + 1] = buff[i];      
     free(buff);
-    ft_printf("SWAP SS\n");
+    ft_printf("ss\n");
 }
 
 void    push_a(int *stack_a, int *stack_b, int *count_a, int *count_b)
@@ -96,7 +96,7 @@ void    push_a(int *stack_a, int *stack_b, int *count_a, int *count_b)
     *count_a += 1;
     *count_b -= 1;
     organise_b(stack_b, count_b);
-    ft_printf("PUSH A\n");
+    ft_printf("pa\n");
 }
 
 void    push_b(int *stack_a, int *stack_b, int *count_a, int *count_b)
@@ -113,7 +113,7 @@ void    push_b(int *stack_a, int *stack_b, int *count_a, int *count_b)
     *count_b += 1;
     *count_a -= 1;
     organise_a(stack_a, count_a);
-    ft_printf("PUSH B\n");
+    ft_printf("pb\n");
 }
 
 void    rotate_a(int *stack_a, int *count_a, int *best_a)
@@ -124,7 +124,7 @@ void    rotate_a(int *stack_a, int *count_a, int *best_a)
     stack_a[buff] = stack_a[0];
     organise_a(stack_a, count_a);
     *best_a -= 1;
-    printf("ROTATE A\n");
+    ft_printf("ra\n");
 }
 
 void    rotate_b(int *stack_b, int *count_b, int *best_b)
@@ -136,7 +136,7 @@ void    rotate_b(int *stack_b, int *count_b, int *best_b)
     organise_b(stack_b, count_b);
     // ft_printf("rotate B \n");
     *best_b -= 1;
-    printf("ROTATE B\n");
+    ft_printf("rb\n");
 }
 
 void    rotate_double(int *stack_a, int *count_a, int *stack_b, int *count_b, int *best_a, int *best_b)
@@ -152,7 +152,7 @@ void    rotate_double(int *stack_a, int *count_a, int *stack_b, int *count_b, in
     organise_b(stack_b, count_b);
     // ft_printf("rotate B \n");
     *best_b -= 1;
-    printf("ROTATE DOUBLE\n");
+    ft_printf("rr\n");
 }
 
 void    revers_rotate_a(int *stack_a, int *count_a, int *best_a)
@@ -169,7 +169,7 @@ void    revers_rotate_a(int *stack_a, int *count_a, int *best_a)
     }
     stack_a[buff] = storage;
     *best_a += 1;
-    printf("REVERS ROTATE A\n");
+    ft_printf("rra\n");
 }
 
 void    revers_rotate_b(int *stack_b, int *count_b, int *best_b) 
@@ -186,7 +186,7 @@ void    revers_rotate_b(int *stack_b, int *count_b, int *best_b)
     }
     stack_b[buff] = storage;
     *best_b += 1;
-    printf("REVERS ROTATE B\n");
+    ft_printf("rrb\n");
 }
 
 void    revers_rotate_double(int *stack_a, int *count_a, int *stack_b, int *count_b,  int *best_a, int *best_b)
@@ -212,6 +212,6 @@ void    revers_rotate_double(int *stack_a, int *count_a, int *stack_b, int *coun
     }
     stack_b[buff] = storage;
     *best_b += 1;
-    printf("REVERS ROTATE DOUBLE\n");
+    ft_printf("rrr\n");
 }
 

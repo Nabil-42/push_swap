@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:14 by nabil             #+#    #+#             */
-/*   Updated: 2024/01/21 09:52:37 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/04 14:00:39 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,18 @@ int     verif_2(int i, int buff, int median_a, int median_b, int count_a, int co
 {
     if (i >= median_a && buff >= median_b )
         {
-            if (i <= buff)
+            if ((count_a - i) <= count_b - buff)
             {
-                calcule = count_a - i;
+                calcule = count_b - buff;
+                 if (count_b % 2 != 0 && buff == median_b)
+                    calcule += 1;
             }
             else{
-                calcule = count_b - buff;
+                calcule = count_a - i;
+                if (count_a % 2 != 0 && i == median_a)
+                    calcule += 1; 
             }
-
+           
             return(calcule);
         }
         return(calcule);
@@ -49,18 +53,23 @@ int     verif_3(int i, int buff, int median_a, int median_b, int count_a, int co
         {
             if (i <= median_a && median_b == 1)
             {
-                calcule = i;  
+                calcule = i; 
             }
             else if (i >= median_a && median_b == 1)
             {
-                calcule = (count_a - i);     
+                calcule = (count_a - i);
+                if (count_a % 2 != 0 && i == median_a)
+                    calcule += 1; 
             }
             else if ( i < median_a)
             {
-                calcule = i + (count_b - buff);   
+                calcule = i + (count_b - buff);
+             
             }
             else{   
                 calcule = buff + (count_a - i);
+                if (count_a % 2 != 0 && i == median_a)
+                    calcule += 1; 
             }
             return(calcule);
         }
@@ -121,9 +130,9 @@ void    calcule(int *stack_a, int *stack_b, int count_a, int count_b, int *best_
     if (buff != -1)
     {
     calcule = 0;
-    calcule = verif_1(i, buff, median_a, median_b, calcule);
-    calcule = verif_2(i, buff, median_a, median_b, count_a, count_b, calcule);
     calcule = verif_3(i, buff, median_a, median_b, count_a, count_b, calcule);
+    calcule = verif_2(i, buff, median_a, median_b, count_a, count_b, calcule);
+    calcule = verif_1(i, buff, median_a, median_b, calcule);
     }
     if (i == 0)
         calcule_buff = calcule;
@@ -151,13 +160,14 @@ int     push(int *best_a, int *best_b, int *stack_a, int *stack_b, int count_a, 
         || (*best_a <= 0 && *best_b >= count_b)
         || (*best_a >= count_a && *best_b <= 0)))
     {     
-        if ((*best_a < median_a && *best_b < median_b) 
+        if ((*best_a < median_a && (*best_b < median_b || median_b == 1)) 
                 && (*best_a > 0 && *best_b > 0))
                 rotate_double(stack_a, &count_a, stack_b, &count_b, best_a, best_b);
         else if (*best_a < median_a && *best_a > 0)
                 rotate_a(stack_a, &count_a, best_a);
         else if (*best_b < median_b && *best_b > 0)
                 rotate_b(stack_b, &count_b, best_b);
+        
         if ((*best_a >= median_a && *best_b >= median_b) 
                 && (*best_a != count_a && *best_b != count_b)
                 && (count_a > 0 && count_b > 0))
@@ -165,22 +175,22 @@ int     push(int *best_a, int *best_b, int *stack_a, int *stack_b, int count_a, 
         else if (*best_a >= median_a && *best_a != count_a)
                 revers_rotate_a(stack_a, &count_a, best_a);
         else if (*best_b >= median_b && *best_b != count_b)
-                revers_rotate_b(stack_b, &count_b, best_b);  
+                revers_rotate_b(stack_b, &count_b, best_b); 
     }
     return (0);
 }
 
 void     three_left(int *stack_a, int count_a)
 {
-    if (verif_small(stack_a[3], stack_a, &count_a) && verif_big(stack_a[0], stack_a, &count_a))
+    if (verif_small(stack_a[2], stack_a, &count_a) && verif_big(stack_a[0], stack_a, &count_a))
         {
             swap_a(stack_a);
         }
-    else if (verif_small(stack_a[1], stack_a, &count_a) && verif_big(stack_a[2], stack_a, &count_a))
+    else if (verif_small(stack_a[0], stack_a, &count_a) && verif_big(stack_a[1], stack_a, &count_a))
     {
         swap_a(stack_a);
     }
-    else if (verif_small(stack_a[2], stack_a, &count_a) && verif_big(stack_a[3], stack_a, &count_a))
+    else if (verif_small(stack_a[1], stack_a, &count_a) && verif_big(stack_a[2], stack_a, &count_a))
     {
         swap_a(stack_a);
     }

@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/01/21 09:53:11 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/03 19:38:43 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,41 +58,31 @@ void    algo(int *stack_a, int *stack_b, int argc)
     int     count_b;
     int     best_a = 0;
     int     best_b = 0;
-    int     i = 0;
-
+    
     count_b = 0;
     count_a = argc - 1;
-
-    i = 0;
-    while(i < count_a)
-    {
-        printf("stack_a[%d] = %d\n", i, stack_a[i]);
-        ++i;
-    }
     
-    push_b(stack_a, stack_b, &count_a, &count_b);
-    push_b(stack_a, stack_b, &count_a, &count_b);
+    if (count_a > 3)
+        push_b(stack_a, stack_b, &count_a, &count_b);
+    if (count_a > 3)
+        push_b(stack_a, stack_b, &count_a, &count_b);
     while(count_a > 3)
     {
         calcule(stack_a, stack_b, count_a, count_b, &best_a, &best_b);  
         push(&best_a, &best_b, stack_a, stack_b, count_a, count_b);
         push_b(stack_a, stack_b, &count_a, &count_b);
+        
     }
-    three_left(stack_a, count_a); 
+    three_left(stack_a, count_a);
     while(count_b != 0)
     {
         calcule(stack_b, stack_a, count_b, count_a, &best_b, &best_a);
-        push(&best_b, &best_a, stack_b, stack_a, count_b, count_a);
+        push(&best_a, &best_b, stack_a, stack_b, count_a, count_b);
         push_a(stack_a, stack_b, &count_a, &count_b);
+        
     }
     best_a = scan_small(stack_a, &count_a);
     push(&best_a, &best_b, stack_a, stack_b, count_a, count_b);
-    i = 0;
-    while(i < count_a)
-    {
-        printf("stack_a[%d] = %d\n", i, stack_a[i]);
-        ++i;
-    }
 }
   
     
@@ -110,7 +100,7 @@ int    push_swap(char **argv, int argc)
     stack_a = (int *)malloc(sizeof(int) * (argc - 1));
     stack_b = (int *)malloc(sizeof(int) * (argc - 1));
     if(!stack_a || !stack_b)
-            return(printf("ereur alloc"));
+            return(0);
     while(argv[j])
     {
         stack_a[i] = ft_atoi(argv[j]);
