@@ -31,6 +31,17 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
+typedef struct s_stack
+{
+	int	*tab;
+	int	count;
+}	t_stack;
+
+typedef struct s_args
+{
+	t_stack	stack_a;
+	t_stack	stack_b;
+}			t_args;
 
 void    swap_a(int  *stack);
 void     swap_b(int  *stack);
@@ -48,9 +59,6 @@ void    revers_rotate_double(int *stack_a, int *count_a, int *stack_b, int *coun
 
 int    scan_small(int *stack, int *count);
 int    scan_big(int *stack, int *count);
-// int    wich_one(int above, int under, int *count);
-int    final(int *stack, int *count);
-int     comp(int start,int *stack_search, int *count_search, int *under, int *above);
 int     verif_big(int start,int *stack_search, int *count_search);
 int     verif_small(int start,int *stack_search, int *count_search);
 
