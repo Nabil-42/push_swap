@@ -31,40 +31,51 @@ typedef struct s_list
 	struct s_list	*next;
 }			t_list;
 
-typedef struct s_stack
-{
-	int	*tab;
-	int	count;
-}	t_stack;
-
 typedef struct s_args
 {
-	t_stack	stack_a;
-	t_stack	stack_b;
+	int	*stack_a;
+	int	*stack_b;
+	int	count_a;
+	int	count_b;
+	int	best_a;
+	int	best_b;
+	int	median_a;
+	int	median_b;
+	int	buff;
+	int	i;
+	int	calcule;
+	int	calcule_buff;
 }			t_args;
 
 void    swap_a(int  *stack);
 void     swap_b(int  *stack);
 void     swap_ss(int  *stack_a, int *stack_b);
-void	push_a(int *stack_a, int *stack_b, int *count_a, int *count_b);
-void	push_b(int *stack_a, int *stack_b, int *count_a, int *count_b);
+void	push_a(t_args *args);
+void	push_b(t_args *args);
 void    organise_a(int *stack, int *count);
 void    organise_b(int *stack, int *count);
 void    rotate_a(int *stack_a, int *count_a, int *best_a);
 void    rotate_b(int *stack_b, int *count_b, int *best_b);
-void    rotate_double(int *stack_a, int *count_a, int *stack_b, int *count_b, int *best_a, int *best_b);
+void    rotate_double(t_args *args);
 void    revers_rotate_a(int *stack_a, int *count_a, int *best_a);
 void    revers_rotate_b(int *stack_b, int *count_b, int *best_b);
-void    revers_rotate_double(int *stack_a, int *count_a, int *stack_b, int *count_b,  int *best_a, int *best_b);
+void    revers_rotate_double(t_args *args);
 
-int    scan_small(int *stack, int *count);
+int	scan_small(int *stack, int *count);
 int    scan_big(int *stack, int *count);
 int     verif_big(int start,int *stack_search, int *count_search);
 int     verif_small(int start,int *stack_search, int *count_search);
+int     verif_1(t_args *args);
+int     verif_2(t_args *args);
+int     verif_3(t_args *args);
+int     verif_4(t_args *args);
+int     verif_5(t_args *args);
+int     verif_6(t_args *args);
 
-void    calcule(int *stack_a, int *stack_b, int count_a, int count_b, int *best_a, int *best_b);
+void    calcule_1(t_args *args);
+void    calcule_2(t_args *args);
 int    nearest_small(int stack_a, int *stack_b, int count);
-int     push(int *best_a, int *best_b, int *stack_a, int *stack_b, int count_a, int count_b);
+int     push(t_args *args);
 void     three_left(int *stack_a, int count_a);
 
 int		ft_isalnum(int c);

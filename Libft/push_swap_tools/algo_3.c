@@ -3,78 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   algo_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:14 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/12 20:03:25 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/23 18:50:07 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-int     verif_1(int i, int buff, int median_a, int median_b, int calcule)
-{
-    if (i <= median_a && buff <= median_b)
-        {
-            if (i >= buff )
-                calcule = i;
-            else{
-                calcule = buff;
-            }
-            return(calcule);
-        }
-        return(calcule);
-}
 
-int     verif_2(int i, int buff, int median_a, int median_b, int count_a, int count_b, int calcule)
-{
-    if (i >= median_a && buff >= median_b )
-        {
-            if ((count_a - i) <= count_b - buff)
-            {
-                calcule = count_b - buff;
-                 if (count_b % 2 != 0 && buff == median_b)
-                    calcule += 1;
-            }
-            else{
-                calcule = count_a - i;
-                if (count_a % 2 != 0 && i == median_a)
-                    calcule += 1; 
-            }
-           
-            return(calcule);
-        }
-        return(calcule);
-}
-
-int     verif_3(int i, int buff, int median_a, int median_b, int count_a, int count_b, int calcule)
-{
-    if ((i >= median_a && buff < median_b) || (i < median_a && buff >= median_b))
-        {
-            if (i <= median_a && median_b == 1)
-            {
-                calcule = i; 
-            }
-            else if (i >= median_a && median_b == 1)
-            {
-                calcule = (count_a - i);
-                if (count_a % 2 != 0 && i == median_a)
-                    calcule += 1; 
-            }
-            else if ( i < median_a)
-            {
-                calcule = i + (count_b - buff);
-             
-            }
-            else{   
-                calcule = buff + (count_a - i);
-                if (count_a % 2 != 0 && i == median_a)
-                    calcule += 1; 
-            }
-            return(calcule);
-        }
-        return(calcule);
-}
 
 int    nearest_small(int stack_a, int *stack_b, int count)
 {
@@ -93,16 +31,10 @@ int    nearest_small(int stack_a, int *stack_b, int count)
     while(i < count)
     {
         if (buff == 0 && stack_a - stack_b[i] < 0)
-        {
-            buff = stack_a - stack_b[i];
-            j = i;
-        }
+            (buff = stack_a - stack_b[i], j = i);
         buff_2 = (stack_a - stack_b[i + 1]);
         if (buff < buff_2 && buff_2 < 0)
-        {
-            buff = buff_2;
-            j = i + 1;    
-        }
+            (buff = buff_2, j = i + 1);  
         ++i;
     }
         if (buff == 0)
@@ -111,71 +43,87 @@ int    nearest_small(int stack_a, int *stack_b, int count)
 }
 
 
-void    calcule(int *stack_a, int *stack_b, int count_a, int count_b, int *best_a, int *best_b)
+void    calcule_2(t_args *args)
 {
-    int     median_a;
-    int     median_b;
-    int     buff;
-    int     i;
-    int     calcule;
-    int     calcule_buff;
-    
-    calcule_buff = 0;  
-    i = 0;
-    median_a = count_a / 2;
-    median_b = count_b / 2;
-    while(i < count_a)
+    args->i = 0;
+    args->median_a = args->count_a / 2;
+    args->median_b = args->count_b / 2;
+    while(args->i < args->count_b)
     {
-    buff = nearest_small(stack_a[i], stack_b, count_b);
-    if (buff != -1)
+    args->buff = nearest_small(args->stack_b[args->i], args->stack_a, args->count_a);
+    if (args->buff != -1)
     {
-    calcule = 0;
-    calcule = verif_3(i, buff, median_a, median_b, count_a, count_b, calcule);
-    calcule = verif_2(i, buff, median_a, median_b, count_a, count_b, calcule);
-    calcule = verif_1(i, buff, median_a, median_b, calcule);
+    args->calcule = 0;
+    args->calcule = verif_6(args);
+    args->calcule = verif_5(args);
+    args->calcule = verif_4(args);
     }
-    if (i == 0)
-        calcule_buff = calcule;
-    if ((calcule <= calcule_buff || calcule == 0) && buff != -1)
+    if (args->i == 0)
+        args->calcule_buff = args->calcule;
+    if ((args->calcule <= args->calcule_buff || args->calcule == 0) && args->buff != -1)
     {
-        calcule_buff = calcule;
-        *best_a = i;
-        *best_b = buff; 
-        if (calcule == 0)
+        args->calcule_buff = args->calcule;
+        args->best_b = args->i;
+        args->best_a = args->buff; 
+        if (args->calcule == 0)
             break;
     }
-    ++i;
+    ++(args->i);
     }
 }
 
-int     push(int *best_a, int *best_b, int *stack_a, int *stack_b, int count_a, int count_b)
+void    calcule_1(t_args *args)
 {
-    int     median_a;
-    int     median_b;
-    
-    median_a = count_a / 2;
-    median_b = count_b / 2;
-    while (!((*best_a <= 0 && *best_b <= 0) 
-        || (*best_a >= count_a && *best_b >= count_b) 
-        || (*best_a <= 0 && *best_b >= count_b)
-        || (*best_a >= count_a && *best_b <= 0)))
+    args->i = 0;
+    args->median_a = args->count_a / 2;
+    args->median_b = args->count_b / 2;
+    while(args->i < args->count_a)
+    {
+    args->buff = nearest_small(args->stack_a[args->i], args->stack_b, args->count_b);
+    if (args->buff != -1)
+    {
+    args->calcule = 0;
+    args->calcule = verif_3(args);
+    args->calcule = verif_2(args);
+    args->calcule = verif_1(args);
+    }
+    if (args->i == 0)
+        args->calcule_buff = args->calcule;
+    if ((args->calcule <= args->calcule_buff || args->calcule == 0) && args->buff != -1)
+    {
+        args->calcule_buff = args->calcule;
+        args->best_a = args->i;
+        args->best_b = args->buff; 
+        if (args->calcule == 0)
+            break;
+    }
+    ++(args->i);
+    }
+}
+
+int     push(t_args *args)
+{
+    while (!((args->best_a <= 0 && args->best_b <= 0) 
+        || (args->best_a >= args->count_a && args->best_b >= args->count_b) 
+        || (args->best_a <= 0 && args->best_b >= args->count_b)
+        || (args->best_a >= args->count_a && args->best_b <= 0)))
     {     
-        if ((*best_a < median_a && (*best_b < median_b || median_b == 1)) 
-                && (*best_a > 0 && *best_b > 0))
-                rotate_double(stack_a, &count_a, stack_b, &count_b, best_a, best_b);
-        else if (*best_a < median_a && *best_a > 0)
-                rotate_a(stack_a, &count_a, best_a);
-        else if (*best_b < median_b && *best_b > 0)
-                rotate_b(stack_b, &count_b, best_b);
+        if ((args->best_a < args->median_a && (args->best_b < args->median_b || args->median_b == 1)) 
+                && (args->best_a > 0 && args->best_b > 0))
+                rotate_double(args);
+        else if (args->best_a < args->median_a && args->best_a > 0)
+                rotate_a(args->stack_a, &args->count_a, &args->best_a);
+        else if (args->best_b < args->median_b && args->best_b > 0)
+                rotate_b(args->stack_b, &args->count_b, &args->best_b);
         
-        if ((*best_a >= median_a && *best_b >= median_b) 
-                && (*best_a != count_a && *best_b != count_b)
-                && (count_a > 0 && count_b > 0))
-                revers_rotate_double(stack_a, &count_a, stack_b, &count_b, best_a, best_b);
-        else if (*best_a >= median_a && *best_a != count_a)
-                revers_rotate_a(stack_a, &count_a, best_a);
-        else if (*best_b >= median_b && *best_b != count_b)
-                revers_rotate_b(stack_b, &count_b, best_b); 
+        if ((args->best_a >= args->median_a && args->best_b >= args->median_b) 
+                && (args->best_a != args->count_a && args->best_b != args->count_b)
+                && (args->count_a > 0 && args->count_b > 0))
+                revers_rotate_double(args);
+        else if (args->best_a >= args->median_a && args->best_a != args->count_a)
+                revers_rotate_a(args->stack_a, &args->count_a, &args->best_a);
+        else if (args->best_b >= args->median_b && args->best_b != args->count_b)
+                revers_rotate_b(args->stack_b, &args->count_b, &args->best_b); 
     }
     return (0);
 }

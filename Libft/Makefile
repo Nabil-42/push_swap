@@ -18,7 +18,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -fPIC
 RM			=	rm -rf
 
-SRC			=	push_swap_tools/basic_3.c push_swap_tools/basic_2.c push_swap_tools/basic_1.c push_swap_tools/algo_3.c push_swap_tools/algo_2.c push_swap_tools/algo_1.c char/ft_isalnum.c char/ft_isalpha.c char/ft_isascii.c char/ft_isdigit.c char/ft_isprint.c \
+SRC			=	push_swap_tools/basic_3.c push_swap_tools/basic_2.c push_swap_tools/basic_1.c push_swap_tools/algo_4.c push_swap_tools/algo_3.c push_swap_tools/algo_2.c push_swap_tools/algo_1.c char/ft_isalnum.c char/ft_isalpha.c char/ft_isascii.c char/ft_isdigit.c char/ft_isprint.c \
 				char/ft_occ.c char/ft_putchar_fd.c char/ft_putendl_fd.c char/ft_putstr_fd.c char/ft_puthex_fd.c char/ft_tolower.c char/ft_toupper.c \
 				int/ft_atoi.c int/ft_itoa.c int/ft_nbrlength.c int/ft_putnbr_fd.c int/ft_putunbr.c \
 				lst/ft_lstadd_back.c lst/ft_lstadd_front.c lst/ft_lstclear.c lst/ft_lstdelone.c lst/ft_lstiter.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/17 18:55:32 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/23 18:43:29 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,29 +62,22 @@ int	verif2(int argc, char **argv)
 
 void	algo(t_args *args, int argc)
 {
-	int	best_a;
-	int	best_b;
-
-	best_a = 0;
-	best_b = 0;
-	args->stack_a.count = argc - 1;
-	args->stack_b.count = 0;
-	if (count_a > 3)
+	args->best_a = 0;
+	args->best_b = 0;
+	args->count_a = argc - 1;
+	args->count_b = 0;
+	if (args->count_a > 3)
 		push_b(args);
-	if (count_a > 3)
-		push_b(stack_a, stack_b, &count_a, &count_b);
-	while (count_a > 3)
-		(calcule(stack_a, stack_b, count_a, count_b, &best_a, &best_b),
-			push(&best_a, &best_b, stack_a, stack_b, count_a, count_b),
-			push_b(stack_a, stack_b, &count_a, &count_b));
-	if (count_a > 2)
-		three_left(stack_a, count_a);
-	while (count_b != 0)
-		(calcule(stack_b, stack_a, count_b, count_a, &best_b, &best_a),
-			push(&best_a, &best_b, stack_a, stack_b, count_a, count_b),
-			push_a(stack_a, stack_b, &count_a, &count_b));
-	best_a = scan_small(stack_a, &count_a);
-	push(&best_a, &best_b, stack_a, stack_b, count_a, count_b);
+	if (args->count_a > 3)
+		push_b(args);
+	while (args->count_a > 3)
+		(calcule_1(args),push(args),push_b(args));
+	if (args->count_a > 2)
+		three_left(args->stack_a, args->count_a);
+	while (args->count_b != 0)
+		(calcule_2(args),push(args),push_a(args));
+	args->best_a = scan_small(args->stack_a, &(args->count_a));
+	push(args);
 }
 
 int	push_swap(t_args *args, char **argv, int argc)
@@ -94,13 +87,13 @@ int	push_swap(t_args *args, char **argv, int argc)
 
 	i = 0;
 	j = 1;
-	args->stack_a.tab = (int *)malloc(sizeof(int) * (argc - 1));
-	args->stack_b.tab = (int *)malloc(sizeof(int) * (argc - 1));
-	if (!stack_a || !stack_b)
+	args->stack_a = (int *)malloc(sizeof(int) * (argc - 1));
+	args->stack_b = (int *)malloc(sizeof(int) * (argc - 1));
+	if (!args->stack_a || !args->stack_b)
 		return (0);
 	while (argv[j])
 	{
-		args->stack_a.tab[i] = ft_atoi(argv[j]);
+		args->stack_a[i] = ft_atoi(argv[j]);
 		++i;
 		++j;
 	}
@@ -112,12 +105,6 @@ int	main(int argc, char **argv)
 {
 	t_args	args;
 	
-	args = malloc(sizeof(t_args));
-	if (!args)
-	{
-		ft_printf("Error\n");
-		return (1);
-	}
 	if (!(argc >= 2))
 	{
 		ft_printf("Error\n");
