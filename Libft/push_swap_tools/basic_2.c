@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:32:29 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/21 21:26:24 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/26 14:41:41 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,15 @@ void	revers_rotate_a(int *stack_a, int *count_a, int *best_a)
 	int	buff;
 	int	storage;
 
-	buff = *count_a;
-	storage = stack_a[buff - 1];
+	buff = *count_a - 1;
+	storage = stack_a[buff];
 	while (buff > 0)
 	{
 		stack_a[buff] = stack_a[buff - 1];
 		--buff;
 	}
-	stack_a[buff] = storage;
+	stack_a[0] = storage;
 	*best_a += 1;
 	ft_printf("rra\n");
 }
+

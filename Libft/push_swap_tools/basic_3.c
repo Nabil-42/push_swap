@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:09:21 by nabboud           #+#    #+#             */
-/*   Updated: 2024/02/25 12:50:34 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/26 16:59:11 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	revers_rotate_double(t_args *args)
 
 void	push_a(t_args *args)
 {
-	int buff;
+	int	buff;
 
-	buff = args->count_a;
+	buff = args->count_a - 1;
 	while (buff >= 0)
 	{
 		args->stack_a[buff + 1] = args->stack_a[buff];
@@ -70,4 +70,33 @@ void	push_a(t_args *args)
 	args->count_b -= 1;
 	organise_b(args->stack_b, &(args->count_b));
 	ft_printf("pa\n");
+}
+int	verif_one_para(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[1][i])
+	{
+		if ((argv[1][i] == '-' && (argv[1][i - i] != ' ' || i == 0)
+		|| argv[1][i] == '-' && !(argv[1][i + 1] <= '9' && argv[1][i + 1] >= '0'))
+		|| !(argv[1][i] <= '9' && argv[1][i] >= '0')
+		|| argv[1][i + 1] == '\0' && argv[1][i] == ' ')
+				return (0);
+	}
+	return (ft_split)
+}
+
+int	verif3(t_args *args)
+{
+	int i;
+
+	i = 0;
+	while (i <= args->count_a)
+	{
+		if (args->stack_a[i] > args->stack_a[i + 1])
+			return (0);
+		++i;
+	}
+	return (1);
 }

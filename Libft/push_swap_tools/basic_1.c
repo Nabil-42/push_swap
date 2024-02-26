@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_1.c                                           :+:      :+:    :+:   */
+/*   basic_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/08 18:39:32 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/06 20:07:37 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/26 12:24:10 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ void	organise_b(int *stack, int *count_b)
 	}
 }
 
-void	swap_a(int *stack)
+void	swap_a(int *stack, t_args *args)
 {
 	int	i;
 	int	*buff;
 
-	buff = (int *)malloc(sizeof(int));
+	buff = (int *)malloc(sizeof(int) * args->count_a);
+	if (!buff)
+		return ;
 	i = 0;
 	buff[i] = stack[i];
 	stack[i] = stack[i + 1];
