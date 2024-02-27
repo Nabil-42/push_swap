@@ -68,6 +68,7 @@ void	revers_rotate_a(int *stack_a, int *count_a, int *best_a);
 void	revers_rotate_b(int *stack_b, int *count_b, int *best_b);
 void	revers_rotate_double(t_args *args);
 
+int		verif_one_para(char **argv);
 int		verif3(t_args *args);
 int		scan_small(int *stack, int *count);
 int		scan_big(int *stack, int *count);

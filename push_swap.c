@@ -6,7 +6,7 @@
 /*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/26 15:50:05 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/27 13:09:08 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,10 @@ int	push_swap(t_args *args, char **argv, int argc)
 	algo(args);
 	return (0);
 }
+int push_swap_bis (t_args *args, char **argv, int argc)
+{
+	
+}
 
 int	main(int argc, char **argv)
 {
@@ -115,10 +119,14 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!(argc >= 2))
 	{
-		ft_printf("Error\n");
+		ft_printf("Error1\n");
 		return (0);
 	}
 	if (verif1(argv) == 0 || verif2(argc, argv) == 0)
+	{
+		if (verif_one_para(argv))
+		
 		return (ft_printf("Error\n"), 0);
 	push_swap(&args, argv, argc);
+	}
 }

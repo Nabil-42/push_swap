@@ -6,7 +6,7 @@
 /*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:09:21 by nabboud           #+#    #+#             */
-/*   Updated: 2024/02/26 16:59:11 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/27 12:59:57 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,15 @@ int	verif_one_para(char **argv)
 	i = 0;
 	while (argv[1][i])
 	{
-		if ((argv[1][i] == '-' && (argv[1][i - i] != ' ' || i == 0)
-		|| argv[1][i] == '-' && !(argv[1][i + 1] <= '9' && argv[1][i + 1] >= '0'))
-		|| !(argv[1][i] <= '9' && argv[1][i] >= '0')
-		|| argv[1][i + 1] == '\0' && argv[1][i] == ' ')
-				return (0);
+		if (argv[1][i] == '-' && (argv[1][i - i] != ' ' || i == 0))
+			if (argv[1][i] == '-' && !(argv[1][i + 1] <= '9' && argv[1][i + 1] >= '0'))
+				if(argv[1][i] == ' ' && !(argv[1][i + 1] <= '9' && argv[1][i + 1] >= '0'))
+					if ((argv[1][i + 1] == '\0' && argv[1][i] == ' ') || (argv[1][0] == ' '))
+							return (1);
+		
+		++i;
 	}
-	return (ft_split)
+	return (0);
 }
 
 int	verif3(t_args *args)
