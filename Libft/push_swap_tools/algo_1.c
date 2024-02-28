@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:49:16 by nabboud           #+#    #+#             */
-/*   Updated: 2024/02/26 10:27:46 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:20:27 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	verif_3(t_args *args)
 		|| (args->i < args->median_a && args->buff >= args->median_b))
 	{
 		if (args->i <= args->median_a && args->median_b == 1)
-				args->calcule = args->i;
+			args->calcule = args->i;
 		else if (args->i >= args->median_a && args->median_b == 1)
 		{
 			args->calcule = (args->count_a - args->i);
@@ -78,16 +78,16 @@ int	verif_3(t_args *args)
 
 void	all_verif_2(t_args *args)
 {
-			args->calcule = 0;
-			args->calcule = verif_6(args);
-			args->calcule = verif_5(args);
-			args->calcule = verif_4(args);
+	args->calcule = 0;
+	args->calcule = verif_6(args);
+	args->calcule = verif_5(args);
+	args->calcule = verif_4(args);
 }
 
 void	all_verif_1(t_args *args)
 {
-			args->calcule = 0;
-			args->calcule = verif_3(args);
-			args->calcule = verif_2(args);
-			args->calcule = verif_1(args);
+	args->calcule = 0;
+	args->calcule = verif_3(args);
+	args->calcule = verif_2(args);
+	args->calcule = verif_1(args);
 }

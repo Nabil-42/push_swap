@@ -53,7 +53,6 @@ typedef struct s_args
 	int		calcule_buff;
 }	t_args;
 
-
 void	swap_a(int *stack, t_args *args);
 void	swap_b(int *stack);
 void	swap_ss(int *stack_a, int *stack_b);

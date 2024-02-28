@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_4.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 20:46:15 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/26 10:30:14 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/28 12:21:55 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	verif_6(t_args *args)
 		|| (args->i < args->median_b && args->buff >= args->median_a))
 	{
 		if (args->i <= args->median_b && args->median_a == 1)
-				args->calcule = args->i;
+			args->calcule = args->i;
 		else if (args->i >= args->median_b && args->median_a == 1)
 		{
 			args->calcule = (args->count_b - args->i);

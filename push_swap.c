@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/27 13:09:08 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/02/28 18:04:59 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	algo(t_args *args)
 {
 	args->best_a = 0;
 	args->best_b = 0;
-	
 	if (args->count_a > 3)
 		push_b(args);
 	if (args->count_a > 3)
@@ -90,8 +89,8 @@ int	push_swap(t_args *args, char **argv, int argc)
 	j = 1;
 	args->count_a = argc - 1;
 	args->count_b = 0;
-	args->stack_a = (int *)malloc(sizeof(int) * (argc - 1));
-	args->stack_b = (int *)malloc(sizeof(int) * (argc - 1));
+	args->stack_a = (int *)malloc(sizeof(int) * (argc));
+	args->stack_b = (int *)malloc(sizeof(int) * (argc));
 	if (!args->stack_a || !args->stack_b)
 		return (0);
 	while (argv[j])
@@ -102,13 +101,9 @@ int	push_swap(t_args *args, char **argv, int argc)
 		++j;
 	}
 	if (verif3(args))
-		return (ft_printf("vrai\n"));
+		return (free(args->stack_a), free(args->stack_b), 0);
 	algo(args);
 	return (0);
-}
-int push_swap_bis (t_args *args, char **argv, int argc)
-{
-	
 }
 
 int	main(int argc, char **argv)
@@ -119,14 +114,10 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!(argc >= 2))
 	{
-		ft_printf("Error1\n");
+		ft_printf("Error\n");
 		return (0);
 	}
 	if (verif1(argv) == 0 || verif2(argc, argv) == 0)
-	{
-		if (verif_one_para(argv))
-		
 		return (ft_printf("Error\n"), 0);
 	push_swap(&args, argv, argc);
-	}
 }
