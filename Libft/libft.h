@@ -87,6 +87,7 @@ int		nearest_small(int stack_a, int *stack_b, int count, t_args *args);
 int		push(t_args *args);
 void	three_left(int *stack_a, int count_a, t_args *args);
 
+void	ft_freetab_int(int *tab, size_t size);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

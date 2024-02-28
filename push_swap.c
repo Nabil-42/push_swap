@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/28 18:04:59 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/28 23:49:56 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,6 @@ void	algo(t_args *args)
 		(calcule_2(args), push(args), push_a(args));
 	args->best_a = scan_small(args->stack_a, &(args->count_a));
 	push(args);
-	free(args->stack_a);
-	free(args->stack_b);
 }
 
 int	push_swap(t_args *args, char **argv, int argc)
@@ -100,10 +98,16 @@ int	push_swap(t_args *args, char **argv, int argc)
 		++i;
 		++j;
 	}
-	if (verif3(args))
-		return (free(args->stack_a), free(args->stack_b), 0);
-	algo(args);
-	return (0);
+	    if (verif3(args)) {
+        ft_freetab_int(args->stack_a, argc);
+        ft_freetab_int(args->stack_b, argc);
+        return (0);
+    }
+
+    algo(args);
+    ft_freetab_int(args->stack_a, argc);
+    ft_freetab_int(args->stack_b, argc);
+    return (0);
 }
 
 int	main(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 20:46:15 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/28 12:21:55 by nabil            ###   ########.fr       */
+/*   Updated: 2024/02/28 23:51:08 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,16 @@ int	verif_6(t_args *args)
 		return (args->calcule);
 	}
 	return (args->calcule);
+}
+
+void ft_freetab_int(int *tab, size_t size)
+{
+    size_t i;
+
+	i = 0;
+    while (i < size)
+	{
+		free(&tab[i]);
+	}
+    free(tab);
 }
