@@ -6,28 +6,28 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:09:21 by nabboud           #+#    #+#             */
-/*   Updated: 2024/02/28 23:31:33 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/04 10:48:12 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void	revers_rotate_b(int *stack_b, int *count_b, int *best_b)
+void revers_rotate_b(int *stack_b, int *count_b, int *best_b)
 {
-	int	buff;
-	int	storage;
-
-	buff = *count_b;
-	storage = stack_b[buff - 1];
-	while (buff > 0)
+    if (*count_b <= 1)
+        return;
+    int storage = stack_b[*count_b - 1];
+    int i = *count_b - 1;
+    while (i > 0) 
 	{
-		stack_b[buff] = stack_b[buff - 1];
-		--buff;
-	}
-	stack_b[buff] = storage;
-	*best_b += 1;
-	ft_printf("rrb\n");
+        stack_b[i] = stack_b[i - 1];
+        i--;
+    }
+    stack_b[0] = storage;
+    *best_b += 1;
+    ft_printf("rrb\n");
 }
+
 
 void	revers_rotate_double(t_args *args)
 {

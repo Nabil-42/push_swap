@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/28 23:49:56 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/04 10:20:00 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,14 +99,14 @@ int	push_swap(t_args *args, char **argv, int argc)
 		++j;
 	}
 	    if (verif3(args)) {
-        ft_freetab_int(args->stack_a, argc);
-        ft_freetab_int(args->stack_b, argc);
+        free(args->stack_a);
+        free(args->stack_b);
         return (0);
     }
 
     algo(args);
-    ft_freetab_int(args->stack_a, argc);
-    ft_freetab_int(args->stack_b, argc);
+    free(args->stack_a);
+    free(args->stack_b);
     return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: nabil <nabil@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:31:54 by nabil             #+#    #+#              #
-#    Updated: 2024/01/09 16:53:55 by nabil            ###   ########.fr        #
+#    Updated: 2024/03/04 12:54:32 by nabil            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,10 +57,7 @@ fclean:
 	@$(RM) $(NAME) a.out bin
 	@echo "$(CYAN)[Everything]$(END_COLOR) is fclean !"
 
-test:
-	@$(RM) $(OBJ_DIR) $(BONUS_OBJ)
-	@$(RM) $(NAME) a.out bin
-	
 re: fclean all
+	@echo "$(PURPLE)[Rebuild]$(END_COLOR) Done."
 
 .PHONY: all clean fclean re
