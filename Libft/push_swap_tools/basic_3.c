@@ -3,31 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   basic_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:09:21 by nabboud           #+#    #+#             */
-/*   Updated: 2024/03/04 10:48:12 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/05 16:23:09 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-void revers_rotate_b(int *stack_b, int *count_b, int *best_b)
+void	revers_rotate_b(int *stack_b, int *count_b, int *best_b)
 {
-    if (*count_b <= 1)
-        return;
-    int storage = stack_b[*count_b - 1];
-    int i = *count_b - 1;
-    while (i > 0) 
-	{
-        stack_b[i] = stack_b[i - 1];
-        i--;
-    }
-    stack_b[0] = storage;
-    *best_b += 1;
-    ft_printf("rrb\n");
-}
+	int	storage;
+	int	i;
 
+	if (*count_b <= 1)
+		return ;
+	storage = stack_b[*count_b - 1];
+	i = *count_b - 1;
+	while (i > 0)
+	{
+		stack_b[i] = stack_b[i - 1];
+		i--;
+	}
+	stack_b[0] = storage;
+	*best_b += 1;
+	ft_printf("rrb\n");
+}
 
 void	revers_rotate_double(t_args *args)
 {
@@ -80,12 +82,12 @@ int	verif_one_para(char **argv)
 	while (argv[1][i])
 	{
 		if (argv[1][i] == '-' && (argv[1][i - i] != ' ' || i == 0))
-			if (argv[1][i] == '-' &&
-				!(argv[1][i + 1] <= '9' && argv[1][i + 1] >= '0'))
-				if (argv[1][i] == ' ' &&
-					!(argv[1][i + 1] <= '9' && argv[1][i + 1] >= '0'))
-					if ((argv[1][i + 1] == '\0'
-						&& argv[1][i] == ' ') || (argv[1][0] == ' '))
+			if (argv[1][i] == '-' && !(argv[1][i + 1] <= '9' && argv[1][i
+					+ 1] >= '0'))
+				if (argv[1][i] == ' ' && !(argv[1][i + 1] <= '9' && argv[1][i
+						+ 1] >= '0'))
+					if ((argv[1][i + 1] == '\0' && argv[1][i] == ' ')
+						|| (argv[1][0] == ' '))
 						return (0);
 		++i;
 	}
@@ -105,31 +107,3 @@ int	verif3(t_args *args)
 	}
 	return (1);
 }
-
-// int push_swap_bis (t_args *args, char **argv, int argc)
-// {
-// 	int	i;
-// 	char **ptr;
-
-// 	i = 0;
-// 	ptr = ft_split(argv[1], ' ');
-// 	if (verif1(ptr) == 0 || verif2(argc, ptr) == 0)
-// 				return (ft_printf("Error\n"), 0);
-// 	args->count_a = argc - 1;
-// 	args->count_b = 0;
-// 	args->stack_a = (int *)malloc(sizeof(int) * (argc - 1));
-// 	args->stack_b = (int *)malloc(sizeof(int) * (argc - 1));
-// 	if (!args->stack_a || !args->stack_b)
-// 		return (0);
-// 	while (ptr[i] != NULL)
-// 	{
-// 		args->stack_a[i] = ft_atoi(ptr[i]);
-// 		args->stack_b[i] = 0;
-// 		++i;
-// 	}
-// 	free(ptr);
-// 	if (verif3(args))
-// 		return (free(args->stack_a), free(args->stack_b), 0);
-// 	algo(args);
-// 	return (0);
-// }

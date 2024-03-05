@@ -1,6 +1,10 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "algorithm": "c"
-    }
+		"algorithm": "c",
+		"istream": "c",
+		"streambuf": "c",
+		"stdio.h": "c",
+		"stdlib.h": "c"
+	}
 }

@@ -3,42 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:08:04 by nabil             #+#    #+#             */
-/*   Updated: 2024/03/04 10:20:00 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/05 18:06:01 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "Libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-int	verif1(char **argv)
-{
-	int	i;
-	int	j;
-
-	i = 1;
-	j = 1;
-	while (argv[i])
-	{
-		if (argv[i][0] != '-' && !(argv[i][0] <= '9' && argv[i][0] >= '0'))
-			return (0);
-		if (ft_atoi(argv[i]) > 2147483747 || ft_atoi(argv[i]) < -2147483648)
-			return (0);
-		while (argv[i][j])
-		{
-			if (!((argv[i][j] <= '9') && (argv[i][j] >= '0')))
-				return (0);
-			++j;
-		}
-		j = 1;
-		++i;
-	}
-	return (1);
-}
 
 int	verif2(int argc, char **argv)
 {
@@ -69,7 +45,7 @@ void	algo(t_args *args)
 	if (args->count_a > 3)
 		push_b(args);
 	while (args->count_a > 3)
-		(calcule_1(args), push(args), push_b(args));
+		push_b(args);
 	if (args->count_a > 2)
 		three_left(args->stack_a, args->count_a, args);
 	while (args->count_b != 0)
@@ -98,16 +74,40 @@ int	push_swap(t_args *args, char **argv, int argc)
 		++i;
 		++j;
 	}
-	    if (verif3(args)) {
-        free(args->stack_a);
-        free(args->stack_b);
-        return (0);
-    }
+	if (verif3(args))
+		return (free(args->stack_a), free(args->stack_b), 0);
+	algo(args);
+	free(args->stack_a);
+	free(args->stack_b);
+	return (0);
+}
 
-    algo(args);
-    free(args->stack_a);
-    free(args->stack_b);
-    return (0);
+int	push_swap_bis(t_args *args, char **argv, int argc)
+{
+	int		i;
+	char	**ptr;
+
+	i = 0;
+	ptr = ft_split(argv[1], ' ');
+	argc = count_tab(ptr);
+	if (verif1(ptr) == 0 || verif2(argc, ptr) == 0)
+		return (ft_freetab(ptr), ft_printf("Error\n"), 0);
+	args->count_a = argc;
+	args->count_b = 0;
+	args->stack_a = (int *)malloc(sizeof(int) * (argc + 1));
+	args->stack_b = (int *)malloc(sizeof(int) * (argc + 1));
+	if (!args->stack_a || !args->stack_b)
+		return (ft_freetab(ptr), 0);
+	while (ptr[i])
+	{
+		args->stack_a[i] = ft_atoi(ptr[i]);
+		args->stack_b[i] = 0;
+		++i;
+	}
+	if (verif3(args))
+		return (free(args->stack_a), free(args->stack_b), ft_freetab(ptr), 0);
+	(algo(args), free(args->stack_a), free(args->stack_b), ft_freetab(ptr));
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -121,7 +121,17 @@ int	main(int argc, char **argv)
 		ft_printf("Error\n");
 		return (0);
 	}
+	if (argc == 2)
+		if (verif_one_para(argv))
+			if (verif1(argv) == 0 || verif2(argc, argv) == 0)
+				return (push_swap_bis(&args, argv, argc), 0);
 	if (verif1(argv) == 0 || verif2(argc, argv) == 0)
-		return (ft_printf("Error\n"), 0);
-	push_swap(&args, argv, argc);
+	{
+		ft_printf("Error \n");
+		return (0);
+	}
+	else
+	{
+		push_swap(&args, argv, argc);
+	}
 }

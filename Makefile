@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nabil <nabil@student.42.fr>                +#+  +:+       +#+         #
+#    By: nabboud <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/09 14:31:54 by nabil             #+#    #+#              #
-#    Updated: 2024/03/04 12:54:32 by nabil            ###   ########.fr        #
+#    Updated: 2024/03/05 17:43:17 by nabboud          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC			=	cc
 CFLAGS		=	-Wall -Wextra -Werror -fPIC
 RM			=	rm -rf
 
-SRC			= push_swap.c 
+SRC			= push_swap.c
 LIBFT		= Libft/libft.a
 
 OBJ_DIR		=	bin
