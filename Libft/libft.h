@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: soelalou <soelalou@42.student.fr>          +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2023/11/12 11:41:35 by soelalou          #+#    #+#             */
-/*   Updated: 2023/11/12 11:41:35 by soelalou         ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/11 10:29:21 by nabil             #+#    #+#             */
+/*   Updated: 2024/03/11 10:29:21 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +19,6 @@
 # include <string.h>
 # include <strings.h>
 # include <unistd.h>
-# include "../push_swap.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 32
