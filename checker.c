@@ -5,96 +5,56 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/04 13:23:00 by nabil             #+#    #+#             */
-/*   Updated: 2024/03/04 13:23:03 by nabil            ###   ########.fr       */
+/*   Created: 2024/03/09 11:08:08 by nabil             #+#    #+#             */
+/*   Updated: 2024/03/09 14:43:26 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include "Libft/libft.h"
 
-void	error_checker(t_pile **a, t_pile **b)
+void path(char *str)
 {
-	free_pile(a);
-	free_pile(b);
-	ft_printf("Error\n");
-	exit(EXIT_FAILURE);
+    if (str[0] == 'p' && str[1] == 'a')
+        push_a(t_args);
+    if (str[0] == 'p' && str[1] == 'b')
+        push_b;
+    if (str[0] == 'r' && str[1] == 'a')
+        rotate_a
+    if (str[0] == 'r' && str[1] == 'b')
+        rotate_b
+    if (str[0] == 'r' && str[1] == 'r')
+        rotate_double
+    if (str[0] == 'r' && str[1] == 'r' && str[2] == 'a')
+        revers_rotate_a
+    if (str[0] == 'r' && str[1] == 'r' && str[2] == 'b')
+        revers_rotate_b
+    if (str[0] == 'r' && str[1] == 'r' && str[2] == 'r')
+        revers_rotate_double;
 }
 
-static void	parse_cmd(t_pile **a, t_pile **b, char *cmd)
+void traduction(char *instruction)
 {
-	if (!ft_strcmp(cmd, "pa\n"))
-		pa(a, b, true);
-	else if (!ft_strcmp(cmd, "pb\n"))
-		pb(b, a, true);
-	else if (!ft_strcmp(cmd, "sa\n"))
-		sa(a, true);
-	else if (!ft_strcmp(cmd, "sb\n"))
-		sb(b, true);
-	else if (!ft_strcmp(cmd, "ss\n"))
-		ss(a, b, true);
-	else if (!ft_strcmp(cmd, "ra\n"))
-		ra(a, true);
-	else if (!ft_strcmp(cmd, "rb\n"))
-		rb(b, true);
-	else if (!ft_strcmp(cmd, "rr\n"))
-		rr(a, b, true);
-	else if (!ft_strcmp(cmd, "rra\n"))
-		rra(a, true);
-	else if (!ft_strcmp(cmd, "rrb\n"))
-		rrb(b, true);
-	else if (!ft_strcmp(cmd, "rrr\n"))
-		rrr(a, b, true);
-	else
-		error_checker(a, b);
+    unsigned char c0;
+    char c1;
+    int nbr;
+    
+    
 }
-
-static void	init(t_pile **a, char **av, bool is_string)
+int main(int argc, char **argv)
 {
-	long	nbr;
-	int		i;
-
-	i = 0;
-	while (av[i])
-	{
-		if (check_format(av[i]))
-			error(a, av, is_string);
-		nbr = ft_atoi(av[i]);
-		if (nbr > INT_MAX || nbr < INT_MIN)
-			error(a, av, is_string);
-		if (check_doubles(*a, (int)nbr))
-			error(a, av, is_string);
-		append_node(a, (int)nbr);
-		++i;
-	}
-	if (is_string)
-		ft_free_av(av);
-}
-
-int	main(int ac, char **av)
-{
-	int		len;
-	char	*line;
-	t_pile	*a;
-	t_pile	*b;
-
-	a = NULL;
-	b = NULL;
-	if (ac == 1)
-		return (0);
-	else if (ac == 2)
-		av = split(av[1], ' ');
-	init(&a, av + 1, ac == 2);
-	len = pile_len(a);
-	line = get_next_line(0);
-	while (line)
-	{
-		parse_cmd(&a, &b, line);
-		line = get_next_line(0);
-	}
-	if (is_sorted(a) && pile_len(a) == len)
-		ft_printf("OK\n");
-	else
-		ft_printf("KO\n");
-	free(a);
-	return (0);
+    char *instruction;
+    
+    if (argc != 2)
+        return (0);
+    if (instruction == NULL)
+        return (0);
+    while (1)
+    {
+        path(get_next_line(0));
+        if (get_next_line(0) == NULL || instruction[2] != '\n')
+            break;
+        
+      
+    }    
 }
