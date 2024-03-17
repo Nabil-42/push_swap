@@ -87,6 +87,7 @@ void	three_left(int *stack_a, int count_a, t_args *args);
 int		count_tab(char **tab);
 
 void	ft_freetab_int(int *tab, size_t size);
+int		ft_dprintf(int fd, const char *format, ...);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

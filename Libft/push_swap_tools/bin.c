@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bin.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:09:21 by nabboud           #+#    #+#             */
-/*   Updated: 2024/03/11 14:02:33 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/17 15:35:36 by nabboud          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 #include "../../push_swap.h"
+#include <limits.h>
 
 int	count_tab(char **tab)
 {
@@ -38,7 +39,7 @@ int	verif1(char **argv)
 			return (0);
 		if (argv[i][0] != '-' && !(argv[i][0] <= '9' && argv[i][0] >= '0'))
 			return (0);
-		if (ft_atoi(argv[i]) > 2147483747 || ft_atoi(argv[i]) < -2147483648)
+		if (ft_atoi(argv[i]) > INT_MAX || ft_atoi(argv[i]) < INT_MIN)
 			return (0);
 		while (argv[i][j])
 		{
