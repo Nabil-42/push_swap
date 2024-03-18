@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:32:29 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/28 17:52:49 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/18 00:59:08 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	revers_rotate_a(int *stack_a, int *count_a, int *best_a)
 	int	buff;
 	int	storage;
 
-	buff = *count_a;
-	storage = stack_a[buff - 1];
+	buff = *count_a - 1;
+	storage = stack_a[buff];
 	while (buff > 0)
 	{
 		stack_a[buff] = stack_a[buff - 1];

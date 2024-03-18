@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../libft.h"
+#include <limits.h>
 
 long	ft_atoi(const char *str)
 {
@@ -31,6 +32,8 @@ long	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		if (nb > (LONG_MAX - (str[i] - '0')) / 10)
+			return (-1);
 		nb = (nb * 10) + (str[i] - '0');
 		i++;
 	}

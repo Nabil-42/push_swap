@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:14 by nabil             #+#    #+#             */
-/*   Updated: 2024/02/28 18:06:56 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/18 02:45:34 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,13 @@ void	calcule_2(t_args *args)
 	args->i = 0;
 	args->median_a = args->count_a / 2;
 	args->median_b = args->count_b / 2;
+	args->calcule_buff = __INT_MAX__;
 	while (args->i < args->count_b)
 	{
 		args->buff = nearest_small(args->stack_b[args->i], args->stack_a,
 				args->count_a, args);
 		if (args->buff != -1)
 			all_verif_2(args);
-		if (args->i == 0)
-			args->calcule_buff = args->calcule;
 		if ((args->calcule <= args->calcule_buff || args->calcule == 0)
 			&& args->buff != -1)
 		{
@@ -72,14 +71,13 @@ void	calcule_1(t_args *args)
 	args->i = 0;
 	args->median_a = args->count_a / 2;
 	args->median_b = args->count_b / 2;
+	args->calcule_buff = __INT_MAX__;
 	while (args->i < args->count_a)
 	{
 		args->buff = nearest_small(args->stack_a[args->i], args->stack_b,
 				args->count_b, args);
 		if (args->buff != -1)
 			all_verif_1(args);
-		if (args->i == 0)
-			args->calcule_buff = args->calcule;
 		if ((args->calcule <= args->calcule_buff || args->calcule == 0)
 			&& args->buff != -1)
 		{

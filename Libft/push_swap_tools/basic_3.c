@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   basic_3.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nabboud <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 20:09:21 by nabboud           #+#    #+#             */
-/*   Updated: 2024/03/05 16:23:09 by nabboud          ###   ########.fr       */
+/*   Updated: 2024/03/18 15:11:00 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	push_a(t_args *args)
 	int	buff;
 
 	buff = args->count_a;
-	while (buff >= 0)
+	while (buff > 0)
 	{
-		args->stack_a[buff + 1] = args->stack_a[buff];
+		args->stack_a[buff] = args->stack_a[buff - 1];
 		--buff;
 	}
 	args->stack_a[0] = args->stack_b[0];
@@ -94,14 +94,14 @@ int	verif_one_para(char **argv)
 	return (1);
 }
 
-int	verif3(t_args *args)
+int	verif3_bis(t_args *args)
 {
 	int	i;
 
 	i = 0;
 	while (i < args->count_a - 1)
 	{
-		if (args->stack_a[i] > args->stack_a[i + 1])
+		if (args->stack_a[i] >= args->stack_a[i + 1])
 			return (0);
 		++i;
 	}

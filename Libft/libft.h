@@ -64,6 +64,7 @@ void	revers_rotate_a(int *stack_a, int *count_a, int *best_a);
 void	revers_rotate_b(int *stack_b, int *count_b, int *best_b);
 void	revers_rotate_double(t_args *args);
 
+int		ft_dprintf(int fd, const char *format, ...);
 int		push_swap_bis(t_args *args, char **argv, int argc);
 int		verif_one_para(char **argv);
 int		verif3(t_args *args);
@@ -87,7 +88,6 @@ void	three_left(int *stack_a, int count_a, t_args *args);
 int		count_tab(char **tab);
 
 void	ft_freetab_int(int *tab, size_t size);
-int		ft_dprintf(int fd, const char *format, ...);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);

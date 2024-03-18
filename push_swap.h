@@ -6,7 +6,7 @@
 /*   By: nabil <nabil@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/30 12:33:28 by nabil             #+#    #+#             */
-/*   Updated: 2024/03/11 14:17:17 by nabil            ###   ########.fr       */
+/*   Updated: 2024/03/18 14:01:23 by nabil            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <strings.h>
 # include <unistd.h>
 
+int		verif1_bis(char **argv);
+int		verif3_bis(t_args *arg);
 int		verif1(char **argv);
 int		verif2(int argc, char **argv);
 void	swap_b_bis(int *stack);
